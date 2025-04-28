@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的食譜菜單APP</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <script>
+    if (!localStorage.getItem('loggedInUser')) {
+      alert('請先登入');
+      window.location.href = 'login.html';
+    }
+  </script>
+  
+    <!-- ✅ 左上角酪梨回首頁按鈕 -->
+    <a href="home.html" class="home-button">
+      <img src="images/home-avocado.jpg" alt="回首頁" class="home-icon">
+      <!-- 🎵 背景音樂音量調整器 -->
+      <!-- 背景音樂 -->
+<audio id="backgroundMusic" src="audio/background-music.mp3" autoplay loop preload="auto"></audio>
+    </a>
+    <!-- ✅ 背景音樂音量控制器（獨立div） -->
+  <div class="volume-control">
+    🔊 音量：
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+  </div>
+    <!-- 🎵 隱藏的音效元件 -->
+  <audio id="clickSound" src="audio/click-sound.mp3" preload="auto"></audio>
+  <div class="page-container">
+
+    <!-- 今日資訊卡片 -->
+    <div class="today-info-card">
+      <div id="today-date">📅 今日日期：載入中...</div>
+      <div id="today-weather">🌦️ 今日天氣：載入中...</div>
+    </div>
+
+    <!-- 分類按鈕區塊 -->
+    <div class="category-card">
+      <h1 class="main-title">🍽️ 我的食譜菜單APP</h1>
+      <p class="subtitle">選擇一個分類，開始探索美味生活！</p>
+
+      <div class="category-bar" id="categoryBar">
+        <button class="category-button">AI菜單生成</button>
+        <button class="category-button">最新食譜</button>
+        <button class="category-button">人氣食譜</button>
+        <button class="category-button">潤餅皮料理</button>
+        <button class="category-button">低卡瘦身</button>
+        <button class="category-button">蒜頭</button>
+        <button class="category-button">番茄</button>
+        <button class="category-button">蘆筍</button>
+        <button class="category-button">早餐</button>
+        <button class="category-button">素食/蔬食</button>
+        <button class="category-button">烘焙點心&甜點</button>
+        <button class="category-button">親子</button>
+      </div>
+    </div>
+
+    <!-- 今日熱門菜單 -->
+    <div class="hot-topics-card">
+      <h2 class="hot-topics-title">🔥 今日熱門菜單 / 食譜推薦</h2>
+
+      <div class="hot-topic-item" onclick="window.open('https://icook.tw/recipes/474701')">
+        <img src="https://imageproxy.icook.network/resize?type=auto&url=http://tokyo-kitchen.icook.tw.s3.amazonaws.com/uploads/recipe/cover/474701/38bf975dd10047d8.jpg&stripmeta=true&background=255,255,255&width=600&nocrop=true" alt="無生蛋提拉米蘇食譜">
+        <div class="hot-topic-text">
+          <h3>超夯無生蛋提拉米蘇自製食譜</h3>
+          <p>3分鐘快速學無生蛋提拉米蘇，春季必吃！</p>
+        </div>
+      </div>
+
+      <div class="hot-topic-item" onclick="window.open('https://icook.tw/recipes/245864')">
+        <img src="https://imageproxy.icook.network/resize?background=255%2C255%2C255&height=150&nocrop=false&stripmeta=true&type=auto&url=http%3A%2F%2Ftokyo-kitchen.icook.tw.s3.amazonaws.com%2Fuploads%2Frecipe%2Fcover%2F245864%2F0528273464edef2c.jpg&width=200" alt="蘋果塔">
+        <div class="hot-topic-text">
+          <h3>影片手把手教你做蘋果塔</h3>
+          <p>簡單5分鐘上桌，清爽又低負擔！</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div> <!-- /page-container -->
+
+  <script src="js/script.js"></script>
+</body>
+</html>
