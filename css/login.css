@@ -1,13 +1,17 @@
+/* ===== 🌟 全域設定 ===== */
 body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #f2f2f2;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
+  background: url('../images/login-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+
+   /* 使用 flexbox 讓內容置中 */
+   display: flex;
+   justify-content: center;  /* 水平置中 */
+   align-items: center;      /* 垂直置中 */
+}
   
   .login-container {
     background: white;
