@@ -1,65 +1,56 @@
-/* ===== 🌟 全域設定 ===== */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans TC', 'Helvetica Neue', sans-serif;
-  background: url('../images/login-background.jpg') no-repeat center center fixed;
-  background-size: cover;
-  min-height: 100vh;
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>登入</title>
+  <link rel="stylesheet" href="css/login.css"> <!-- (之後可以加美化) -->
+</head>
+<body>
+  <div class="login-container">
 
-   /* 使用 flexbox 讓內容置中 */
-   display: flex;
-   justify-content: center;  /* 水平置中 */
-   align-items: center;      /* 垂直置中 */
-}
-  
-  .login-container {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    text-align: center;
-    width: 400px; /* ⬅️ 加上這行！設定寬度 */
-    max-width: 90%; /* ⬅️ 手機版不超過畫面 */
-  }
-  
-  
-  input {
-    width: 100%;
-    padding: 12px 15px; /* 🆙 增加內距 */
-    margin: 10px 0;
-    box-sizing: border-box;
-    font-size: 18px; /* 🆙 字體變大 */
-    border: 1px solid #ccc;
-    border-radius: 8px;
-  }
-  
-  
-  button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    margin-top: 10px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  /* 社群登入按鈕 */
-  .facebook-button {
-    background-color: #1877f2;
-    color: white;
-    width: 100%;
-  }
-  
-  .google-button {
-    background-color: #db4437;
-    color: white;
-    width: 100%;
-  }
-  /* 註冊按鈕 */
-.register-button {
-    background-color: #4CAF50; /* 綠色 */
-    color: white;
-    width: 100%;
-  }
-  
+    <h1>登入</h1>
+
+    <input type="text" id="loginUsername" placeholder="帳號"><br><br>
+    <input type="password" id="loginPassword" placeholder="密碼"><br><br>
+
+    <button onclick="login()">登入</button>
+
+    <p>還沒有帳號嗎？<button onclick="goRegister()">去註冊</button></p>
+
+    <hr>
+
+    <h2>或使用社群帳號快速登入</h2>
+
+    <button class="facebook-button" onclick="socialLogin('Facebook')">🔵 使用 Facebook 登入</button><br><br>
+    <button class="google-button" onclick="socialLogin('Google')">🔴 使用 Google 登入</button>
+
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      const savedPassword = localStorage.getItem('user_' + username);
+
+      if (password === savedPassword) {
+        localStorage.setItem('loggedInUser', username);
+        alert('登入成功！');
+        window.location.href = 'home.html'; // 登入成功跳首頁
+      } else {
+        alert('帳號或密碼錯誤');
+      }
+    }
+
+    function goRegister() {
+      window.location.href = 'register.html'; // 跳註冊
+    }
+
+    function socialLogin(provider) {
+      const fakeUser = provider + "_user";
+      localStorage.setItem('loggedInUser', fakeUser);
+      alert(provider + '登入成功！');
+      window.location.href = 'home.html';
+    }
+  </script>
+</body>
+</html>
