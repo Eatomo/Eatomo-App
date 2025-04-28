@@ -6,9 +6,31 @@
   <title>我的食譜菜單APP</title>
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    /* 登出按鈕的樣式 */
+    /* 回首頁按鈕樣式 */
+    .home-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999; /* 確保按鈕在最上層 */
+    }
+
+    .home-icon {
+      width: 75px;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .home-icon:hover {
+      transform: scale(1.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 登出按鈕樣式 */
     .logout-button {
-      background-color: #ff4d4d;
+      background-color: #7b42e0;
       color: white;
       border: none;
       border-radius: 25px;
@@ -22,10 +44,9 @@
       transition: all 0.3s ease;
     }
 
-    /* 按鈕滑過效果 */
     .logout-button:hover {
-      background-color: #ff1a1a;
-      box-shadow: 0 4px 15px rgba(255, 26, 26, 0.5);
+      background-color: #a617ed;
+      box-shadow: 0 4px 15px rgba(230, 0, 246, 0.5);
     }
 
     .logout-button:active {
@@ -44,26 +65,29 @@
   <!-- ✅ 左上角酪梨回首頁按鈕 -->
   <a href="home.html" class="home-button">
     <img src="images/home-avocado.jpg" alt="回首頁" class="home-icon">
+    <audio id="backgroundMusic" src="audio/background-music.mp3" autoplay loop preload="auto"></audio>
   </a>
+<!-- 音量控制器 -->
+<div class="volume-control">
+  🔊 音量：
+  <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+  <span id="volumeValue">50%</span> <!-- 顯示音量的百分比 -->
+</div>
 
-  <!-- 音量控制器 -->
-  <div class="volume-control">
-    🔊 音量：
-    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
-  </div>
-
-  <!-- 音效 -->
-  <audio id="clickSound" src="audio/click-sound.mp3" preload="auto"></audio>
+<!-- 音效 -->
+<audio id="clickSound" src="audio/click-sound.mp3" preload="auto"></audio>
 
   <!-- 登出按鈕 -->
-  <button class="logout-button" onclick="logout()">登出</button>
+  <button class="logout-button" onclick="logout()">帳號登出</button>
 
   <div class="page-container">
+    <!-- 今日資訊卡片 -->
     <div class="today-info-card">
       <div id="today-date">📅 今日日期：載入中...</div>
       <div id="today-weather">🌦️ 今日天氣：載入中...</div>
     </div>
 
+    <!-- 分類按鈕區塊 -->
     <div class="category-card">
       <h1 class="main-title">🍽️ 我的食譜菜單APP</h1>
       <p class="subtitle">選擇一個分類，開始探索美味生活！</p>
@@ -114,6 +138,7 @@
       localStorage.removeItem('loggedInUser'); // 清除登入資訊
       window.location.href = 'login.html'; // 跳轉到登入頁
     }
+    
   </script>
 </body>
 </html>
