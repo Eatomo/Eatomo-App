@@ -1,0 +1,61 @@
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 400px; /* ⬅️ 加上這行！設定寬度 */
+    max-width: 90%; /* ⬅️ 手機版不超過畫面 */
+  }
+  
+  
+  input {
+    width: 100%;
+    padding: 12px 15px; /* 🆙 增加內距 */
+    margin: 10px 0;
+    box-sizing: border-box;
+    font-size: 18px; /* 🆙 字體變大 */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* 社群登入按鈕 */
+  .facebook-button {
+    background-color: #1877f2;
+    color: white;
+    width: 100%;
+  }
+  
+  .google-button {
+    background-color: #db4437;
+    color: white;
+    width: 100%;
+  }
+  /* 註冊按鈕 */
+.register-button {
+    background-color: #4CAF50; /* 綠色 */
+    color: white;
+    width: 100%;
+  }
+  

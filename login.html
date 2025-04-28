@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>登入</title>
+  <link rel="stylesheet" href="css/login.css"> <!-- (之後可以加美化) -->
+</head>
+<body>
+  <div class="login-container">
+
+    <h1>登入</h1>
+
+    <input type="text" id="loginUsername" placeholder="帳號"><br><br>
+    <input type="password" id="loginPassword" placeholder="密碼"><br><br>
+
+    <button onclick="login()">登入</button>
+
+    <p>還沒有帳號嗎？<button onclick="goRegister()">去註冊</button></p>
+
+    <hr>
+
+    <h2>或使用社群帳號快速登入</h2>
+
+    <button class="facebook-button" onclick="socialLogin('Facebook')">🔵 使用 Facebook 登入</button><br><br>
+    <button class="google-button" onclick="socialLogin('Google')">🔴 使用 Google 登入</button>
+
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      const savedPassword = localStorage.getItem('user_' + username);
+
+      if (password === savedPassword) {
+        localStorage.setItem('loggedInUser', username);
+        alert('登入成功！');
+        window.location.href = 'index.html'; // 登入成功跳首頁
+      } else {
+        alert('帳號或密碼錯誤');
+      }
+    }
+
+    function goRegister() {
+      window.location.href = 'register.html'; // 跳註冊
+    }
+
+    function socialLogin(provider) {
+      const fakeUser = provider + "_user";
+      localStorage.setItem('loggedInUser', fakeUser);
+      alert(provider + '登入成功！');
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

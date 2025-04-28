@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 菜單生成</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/ai-menu.css">
+</head>
+<body>
+  <!-- ✅ 左上角酪梨回首頁按鈕 -->
+  <a href="index.html" class="home-button">
+    <img src="images/home-avocado.jpg" alt="回首頁" class="home-icon">
+    <!-- 背景音樂 -->
+<audio id="backgroundMusic" src="audio/background-music.mp3" autoplay loop preload="auto"></audio>
+  </a>
+  <!-- ✅ 背景音樂音量控制器（獨立div） -->
+  <div class="volume-control">
+    🔊 音量：
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.5">
+  </div>
+  <!-- 🎵 隱藏的音效元件 -->
+  <audio id="clickSound" src="audio/click-sound.mp3" preload="auto"></audio>
+<div class="ai-menu-container">
+  <h1 class="main-title">🍴 AI 菜單生成器</h1>
+  <p class="subtitle">請選擇一種方式提供您的資料：</p>
+
+  <!-- 方法一：手動填表 -->
+  <div class="form-section">
+    <h2>🔹 手動填寫資料</h2>
+    <form id="manualForm">
+      <input type="text" placeholder="身高 (cm)" name="height" required>
+      <input type="text" placeholder="體重 (kg)" name="weight" required>
+      <input type="text" placeholder="年齡 (歲)" name="age" required>
+      <input type="text" placeholder="體脂 (%)" name="bodyfat" required>
+      <input type="text" placeholder="過敏食材 / 禁忌食物" name="allergy">
+      <input type="text" placeholder="健康目標 (例：減脂、增肌、維持)" name="goal" required>
+      <input type="text" placeholder="飲食習慣 (例：三餐正常、素食)" name="habit" required>
+    </form>
+  </div>
+
+  <p class="or-separator">或</p>
+
+  <!-- 方法二：上傳檔案 -->
+  <div class="upload-section">
+    <h2>🔹 上傳健康檔案</h2>
+    <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.pdf">
+    <p id="fileName" class="file-name-display">未選擇檔案</p>
+  </div>
+
+  <!-- 提交按鈕 -->
+  <button id="submitBtn" class="submit-button">🚀 提交資料並生成菜單</button>
+
+  <!-- 生成中 -->
+  <p id="loadingText" class="loading-text" style="display:none;">🍳 正在生成菜單中，請稍後...</p>
+
+  <!-- 結果區 -->
+  <div id="menuResult" class="menu-result"></div>
+
+  <!-- 重新生成 -->
+  <button id="regenBtn" class="regen-button" style="display:none;">🔄 重新生成</button>
+</div>
+
+<script src="js/ai-menu.js"></script>
+</body>
+</html>
