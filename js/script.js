@@ -85,6 +85,13 @@ if (bgMusic && volumeSlider) {
     e.stopPropagation();
   });
 }
+// 設置音量值顯示
+const volumeValue = document.getElementById('volumeValue');
+
+volumeSlider.addEventListener('input', function () {
+  const volume = Math.round(volumeSlider.value * 100); // 轉換為百分比
+  volumeValue.textContent = `${volume}%`; // 更新顯示的音量數值
+});
 
 // ✅ 酪梨icon正常運作
 if (homeButton) {
