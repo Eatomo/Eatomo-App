@@ -37,21 +37,62 @@
 /* ===== 🎵 背景音樂音量控制器樣式（左上角版） ===== */
 .volume-control {
   position: fixed;
-  top: 20px; 
+  top: 90px; /* 調整至頁面左上方 */
   right: 20px;
-  background: #ffffffcc;
-  padding: 10px 15px;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
+  background: linear-gradient(135deg, #f0a1f9, #fd82e9); /* 使用漸變色背景 */
+  padding: 15px 20px;
+  border-radius: 30px; /* 更圓潤的邊角 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 更強的陰影效果 */
+  font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px; /* 增加按鈕與音量條的間距 */
   z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.volume-control:hover {
+  transform: scale(1.05); /* 滑過時放大效果 */
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* 增強陰影效果 */
+}
+
+/* 音量控制滑塊 */
+.volume-control input[type="range"] {
+  width: 150px;
+  height: 6px; /* 增加音量滑條的高度 */
+  border-radius: 10px; /* 圓角滑塊 */
+  background: #fff; /* 白色背景 */
+  transition: background 0.3s ease;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  background: #fff; /* 圓形白色滑塊 */
+  border-radius: 50%;
+  border: 2px solid #838ff5; /* 給滑塊添加邊框 */
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.volume-control input[type="range"]:hover::-webkit-slider-thumb {
+  background: #959ffc; /* 滑鼠滑過時改變滑塊顏色 */
+}
+
+.volume-control input[type="range"]:focus {
+  outline: none; /* 去除聚焦時的邊框 */
+}
+
+/* 顯示當前音量數值 */
+.volume-control span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* 白色字體 */
+}
+
+
 #volumeSlider {
-  width: 120px;
+  width: 60px;
 }
 
 /* ===== 🌟 全域設定 ===== */
