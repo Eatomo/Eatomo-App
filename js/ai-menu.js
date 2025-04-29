@@ -48,11 +48,9 @@ regenBtn.addEventListener('click', () => {
 });
 
 function generateMenuHTML(resultText) {
-  // 嘗試用簡單標題拆出兩天的內容
   const day1 = resultText.split("### Day 1")[1]?.split("### Day 2")[0]?.trim() || "找不到 Day 1 資料";
   const day2 = resultText.split("### Day 2")[1]?.trim() || "找不到 Day 2 資料";
 
-  // 包進 HTML 結構
   return `
     <div class="day-card">
       <h3>第1天</h3>
@@ -64,5 +62,6 @@ function generateMenuHTML(resultText) {
     </div>
   `;
 }
+
 
 
