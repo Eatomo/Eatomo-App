@@ -3,6 +3,9 @@ const loadingText = document.getElementById('loadingText');
 const menuResult = document.getElementById('menuResult');
 const regenBtn = document.getElementById('regenBtn');
 
+// ✅ 改成 Render 的後端網址
+const API_URL = 'https://backage-2dtn.onrender.com/generate-menu';
+
 // 點擊生成按鈕
 submitBtn.addEventListener('click', async () => {
   loadingText.style.display = 'block';
@@ -18,7 +21,7 @@ submitBtn.addEventListener('click', async () => {
   const weight = parseFloat(document.querySelector('input[name="weight"]').value);
 
   try {
-    const response = await fetch('http://54.191.253.12/generate-menu', {
+    const response = await fetch(API_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ food_allergy, health_goal, diet_preference, age, height, weight })
@@ -72,5 +75,4 @@ function generateMenuHTML(result) {
     </div>
   `;
 }
-
 
