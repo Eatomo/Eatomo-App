@@ -34,7 +34,7 @@ submitBtn.addEventListener('click', async () => {
   });
 
   // 解析後端回應的資料
-  const data = await response.json();
+  const resultText = typeof data.result === 'string' ? data.result : JSON.stringify(data.result);
 
   // 顯示結果
   loadingText.style.display = 'none'; // 隱藏「正在生成」訊息
