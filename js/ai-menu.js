@@ -47,23 +47,22 @@ regenBtn.addEventListener('click', () => {
   submitBtn.click();
 });
 
-function generateMenuHTML(menuData) {
-  const day1 = menuData["Day 1"];
-  const day2 = menuData["Day 2"];
+function generateMenuHTML(resultText) {
+  // 嘗試用簡單標題拆出兩天的內容
+  const day1 = resultText.split("### Day 1")[1]?.split("### Day 2")[0]?.trim() || "找不到 Day 1 資料";
+  const day2 = resultText.split("### Day 2")[1]?.trim() || "找不到 Day 2 資料";
 
+  // 包進 HTML 結構
   return `
     <div class="day-card">
       <h3>第1天</h3>
-      <p><strong>早餐：</strong>${day1.Breakfast.map(dish => dish.name).join('、')}</p>
-      <p><strong>午餐：</strong>${day1.Lunch.map(dish => dish.name).join('、')}</p>
-      <p><strong>晚餐：</strong>${day1.Dinner.map(dish => dish.name).join('、')}</p>
+      <pre>${day1}</pre>
     </div>
     <div class="day-card">
       <h3>第2天</h3>
-      <p><strong>早餐：</strong>${day2.Breakfast.map(dish => dish.name).join('、')}</p>
-      <p><strong>午餐：</strong>${day2.Lunch.map(dish => dish.name).join('、')}</p>
-      <p><strong>晚餐：</strong>${day2.Dinner.map(dish => dish.name).join('、')}</p>
+      <pre>${day2}</pre>
     </div>
   `;
 }
+
 
