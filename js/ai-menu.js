@@ -33,9 +33,13 @@ submitBtn.addEventListener('click', async () => {
     })
   });
 
-  // 解析後端回應的資料
-  const resultText = typeof data.result === 'string' ? data.result : JSON.stringify(data.result);
+ // 解析後端回應的資料
+const data = await response.json();
 
+// ✅ 確保 result 是字串
+const resultText = typeof data.result === 'string'
+  ? data.result
+  : JSON.stringify(data.result);
   // 顯示結果
   loadingText.style.display = 'none'; // 隱藏「正在生成」訊息
   menuResult.innerHTML = generateMenuHTML(data.result); // 顯示從後端獲取的菜單
