@@ -18,7 +18,7 @@ submitBtn.addEventListener('click', async () => {
   const weight = parseFloat(document.querySelector('input[name="weight"]').value);
 
   try {
-    const response = await fetch('http://localhost:3000/generate-menu', {
+    const response = await fetch('http://54.191.253.12/generate-menu', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ food_allergy, health_goal, diet_preference, age, height, weight })
