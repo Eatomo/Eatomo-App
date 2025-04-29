@@ -47,20 +47,23 @@ regenBtn.addEventListener('click', () => {
   submitBtn.click();
 });
 
-// 將後端返回的菜單數據轉換為 HTML 格式
 function generateMenuHTML(menuData) {
+  const day1 = menuData["Day 1"];
+  const day2 = menuData["Day 2"];
+
   return `
     <div class="day-card">
       <h3>第1天</h3>
-      <p>早餐：${menuData.Day1.Breakfast.main}</p>
-      <p>午餐：${menuData.Day1.Lunch.main}</p>
-      <p>晚餐：${menuData.Day1.Dinner.main}</p>
+      <p><strong>早餐：</strong>${day1.Breakfast.map(dish => dish.name).join('、')}</p>
+      <p><strong>午餐：</strong>${day1.Lunch.map(dish => dish.name).join('、')}</p>
+      <p><strong>晚餐：</strong>${day1.Dinner.map(dish => dish.name).join('、')}</p>
     </div>
     <div class="day-card">
       <h3>第2天</h3>
-      <p>早餐：${menuData.Day2.Breakfast.main}</p>
-      <p>午餐：${menuData.Day2.Lunch.main}</p>
-      <p>晚餐：${menuData.Day2.Dinner.main}</p>
+      <p><strong>早餐：</strong>${day2.Breakfast.map(dish => dish.name).join('、')}</p>
+      <p><strong>午餐：</strong>${day2.Lunch.map(dish => dish.name).join('、')}</p>
+      <p><strong>晚餐：</strong>${day2.Dinner.map(dish => dish.name).join('、')}</p>
     </div>
   `;
 }
+
