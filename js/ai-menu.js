@@ -47,19 +47,20 @@ regenBtn.addEventListener('click', () => {
   submitBtn.click();
 });
 
+// 將後端返回的資料轉換為 HTML 格式
 function generateMenuHTML(resultText) {
-  // 嘗試用「第 1 天」和「第 2 天」標題來切割
-  const day1 = resultText.split("### 第 1 天")[1]?.split("### 第 2 天")[0]?.trim() || "找不到第 1 天資料";
-  const day2 = resultText.split("### 第 2 天")[1]?.trim() || "找不到第 2 天資料";
+  const day1 = resultText.split("### Day 1")[1]?.split("### Day 2")[0]?.trim() || "找不到 Day 1 資料";
+  const day2 = resultText.split("### Day 2")[1]?.trim() || "找不到 Day 2 資料";
 
   return `
     <div class="day-card">
-      <h3>第 1 天</h3>
+      <h3>第1天</h3>
       <pre>${day1}</pre>
     </div>
     <div class="day-card">
-      <h3>第 2 天</h3>
+      <h3>第2天</h3>
       <pre>${day2}</pre>
     </div>
   `;
 }
+
