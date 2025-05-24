@@ -10,7 +10,7 @@
   <div class="login-container">
     <h1>註冊新帳號</h1>
 
-    <form id="registerForm" onsubmit="handleRegister(event)">
+    <form id="registerForm">
       <input type="text" id="registerUsername" placeholder="輸入帳號"><br><br>
       <input type="password" id="registerPassword" placeholder="輸入密碼"><br><br>
       <input type="password" id="confirmPassword" placeholder="再次確認密碼"><br><br>
@@ -21,9 +21,11 @@
     <p>已經有帳號？<button onclick="goLogin()">回登入</button></p>
   </div>
 
+  <!-- ✅ 放在頁面底部，確保 DOM 都載入完 -->
   <script>
-    function handleRegister(event) {
-      event.preventDefault(); // ✅ 阻止表單預設送出
+    const form = document.getElementById("registerForm");
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
       console.log("✅ register() 被觸發");
 
       const username = document.getElementById("registerUsername").value;
@@ -43,7 +45,7 @@
       axios.post("https://backage-2dtn.onrender.com/register", {
         username: username,
         password: password,
-        source: "local",
+        source: "local"
       })
       .then((res) => {
         console.log("✅ 註冊成功", res.data);
@@ -53,10 +55,10 @@
         window.location.href = "login.html";
       })
       .catch((err) => {
-        console.error("❌ 註冊錯誤：", err);
+        console.error("❌ 註冊錯誤", err);
         alert("註冊失敗：" + (err.response?.data?.error || err.message));
       });
-    }
+    });
 
     function goLogin() {
       window.location.href = "login.html";
@@ -64,4 +66,3 @@
   </script>
 </body>
 </html>
-<!-- redeploy -->
