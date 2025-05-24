@@ -1,5 +1,4 @@
-// 這是瀏覽器可用版本，放在 register.html 裡即可，不用 import/export
-
+// js/axios.js
 const instance = axios.create({
   baseURL: 'https://backage-2dtn.onrender.com',
   timeout: 10000
@@ -15,5 +14,5 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-// 你之後可以這樣用：
-instance.post('/profile', { height: 170, weight: 60 });
+// 全域註冊到 window（讓 HTML 直接用）
+window.api = instance;
