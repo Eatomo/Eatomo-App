@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>註冊</title>
-  <link rel="stylesheet" href="css/login.css"> <!-- 直接用剛剛那個login.css就可以 -->
+  <link rel="stylesheet" href="css/login.css">
+  <!-- ✅ 使用 CDN 載入 axios，解決 404 問題 -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div class="login-container">
-
     <h1>註冊新帳號</h1>
 
     <input type="text" id="registerUsername" placeholder="輸入帳號"><br><br>
@@ -16,9 +16,7 @@
     <input type="password" id="confirmPassword" placeholder="再次確認密碼"><br><br>
 
     <button class="register-button" onclick="register()">註冊</button>
-
     <p>已經有帳號？<button onclick="goLogin()">回登入</button></p>
-
   </div>
 
   <script>
@@ -37,9 +35,20 @@
         return;
       }
 
-      localStorage.setItem('user_' + username, password);
-      alert('註冊成功！請登入');
-      window.location.href = 'login.html';
+      axios.post('https://backage-2dtn.onrender.com/register', {
+        username: username,
+        password: password,
+        source: 'local'
+      })
+      .then(res => {
+        localStorage.setItem('userId', res.data.id);
+        localStorage.setItem('source', 'local');
+        alert('註冊成功！請登入');
+        window.location.href = 'login.html';
+      })
+      .catch(err => {
+        alert('註冊失敗：' + (err.response?.data?.error || err.message));
+      });
     }
 
     function goLogin() {
