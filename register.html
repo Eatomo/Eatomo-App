@@ -23,7 +23,10 @@
 
   <!-- ✅ 放在頁面底部，確保 DOM 都載入完 -->
   <script>
+    <script>
+  document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registerForm");
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       console.log("✅ register() 被觸發");
@@ -60,9 +63,12 @@
       });
     });
 
-    function goLogin() {
+    window.goLogin = function () {
       window.location.href = "login.html";
-    }
+    };
+  });
+</script>
+
   </script>
 </body>
 </html>
