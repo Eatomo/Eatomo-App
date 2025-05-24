@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>註冊</title>
-  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/login.css" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script defer>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("registerForm");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const username = document.getElementById("registerUsername").value;
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        console.log("✅ register() 被觸發");
+
+        if (!username || !password || !confirmPassword) {
+          alert("請完整填寫帳號與密碼");
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          alert("兩次密碼不一致，請重新輸入");
+          return;
+        }
+
+        axios
+          .post("https://backage-2dtn.onrender.com/register", {
+            username: username,
+            password: password,
+            source: "local",
+          })
+          .then((res) => {
+            console.log("✅ 註冊成功，回傳資料：", res.data);
+            localStorage.setItem("userId", res.data.id);
+            localStorage.setItem("source", "local");
+            alert("註冊成功！請登入");
+            window.location.href = "login.html";
+          })
+          .catch((err) => {
+            console.error("❌ 註冊錯誤：", err);
+            alert("註冊失敗：" + (err.response?.data?.error || err.message));
+          });
+      });
+
+      window.goLogin = () => {
+        window.location.href = "login.html";
+      };
+    });
+  </script>
 </head>
 <body>
   <div class="login-container">
     <h1>註冊新帳號</h1>
 
     <form id="registerForm">
-      <input type="text" id="registerUsername" placeholder="輸入帳號"><br><br>
-      <input type="password" id="registerPassword" placeholder="輸入密碼"><br><br>
-      <input type="password" id="confirmPassword" placeholder="再次確認密碼"><br><br>
+      <input type="text" id="registerUsername" placeholder="輸入帳號" /><br /><br />
+      <input type="password" id="registerPassword" placeholder="輸入密碼" /><br /><br />
+      <input type="password" id="confirmPassword" placeholder="再次確認密碼" /><br /><br />
 
       <button type="submit" class="register-button">註冊</button>
     </form>
 
     <p>已經有帳號？<button onclick="goLogin()">回登入</button></p>
   </div>
-
-  <script>
-    document.getElementById('registerForm').addEventListener('submit', function (event) {
-      event.preventDefault(); // 防止表單預設送出
-
-      const username = document.getElementById('registerUsername').value;
-      const password = document.getElementById('registerPassword').value;
-      const confirmPassword = document.getElementById('confirmPassword').value;
-
-      console.log('✅ register() 被觸發');
-
-      if (!username || !password || !confirmPassword) {
-        alert('請完整填寫帳號與密碼');
-        return;
-      }
-
-      if (password !== confirmPassword) {
-        alert('兩次密碼不一致，請重新輸入');
-        return;
-      }
-
-      axios.post('https://backage-2dtn.onrender.com/register', {
-        username: username,
-        password: password,
-        source: 'local'
-      })
-      .then(res => {
-        console.log('✅ 註冊成功，回傳資料：', res.data);
-        localStorage.setItem('userId', res.data.id);
-        localStorage.setItem('source', 'local');
-        alert('註冊成功！請登入');
-        window.location.href = 'login.html';
-      })
-      .catch(err => {
-        console.error('❌ 註冊錯誤：', err);
-        alert('註冊失敗：' + (err.response?.data?.error || err.message));
-      });
-    });
-
-    function goLogin() {
-      window.location.href = 'login.html';
-    }
-  </script>
 </body>
 </html>
